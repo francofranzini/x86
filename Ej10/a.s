@@ -8,6 +8,7 @@ msg:  .asciz "Imprime %c\n"
 main:
   subq $8, %rsp
   movq $g, %rax
+  movl g+4, %eax
   movq $3, %rbx
   movb a(,%rbx,4), %al
   leaq msg, %rdi
