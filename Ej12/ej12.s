@@ -25,7 +25,6 @@ main:
   
   xor %rcx, %rcx
   movb length, %cl
-  subb $1, %cl
   xorq %rax, %rax
 
   leaq list, %rbx  
@@ -34,9 +33,12 @@ main:
     addq $4, %rbx
     loop sumar_arreglo
   
-  leaq format, %rdi
-  movq %rax, %rsi
-  call printf  
+
+  movq %rax, %rsi      # Valor a imprimir (segundo argumento)
+  leaq (format), %rdi  # Formato (primer argumento)
+  xorq %rax, %rax      # 0 argumentos vectoriales para printf
+  call printf
+
   xorq %rax, %rax
   ret
     
